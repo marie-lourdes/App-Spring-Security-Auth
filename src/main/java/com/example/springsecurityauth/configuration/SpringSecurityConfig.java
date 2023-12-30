@@ -17,11 +17,18 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SpringSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		return http.authorizeHttpRequests(request -> {
+		 http.authorizeHttpRequests(request -> {
 			request.requestMatchers("/admin").hasRole("ADMIN");
+			request.requestMatchers("/h2-console/**").permitAll();
 			request.requestMatchers("/user").hasRole("USER");
 			request.anyRequest().authenticated();
-		}).formLogin(Customizer.withDefaults()).build();
+			
+		}).formLogin(Customizer.withDefaults())
+         .csrf(csrf -> csrf
+                 .ignoringRequestMatchers("/h2-console/**"));
+		
+	
+		return http.build();
 	}
 
 	@Bean
