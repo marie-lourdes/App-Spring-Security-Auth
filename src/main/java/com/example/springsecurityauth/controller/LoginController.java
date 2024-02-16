@@ -20,6 +20,6 @@ public class LoginController {
 
 	@GetMapping("/")
 	public String getGithubPage( Principal principal) {
-		return "Welcome, GitHub user"+ principal.getName();
+		return "Welcome, GitHub user"+ principal.toString();
 	}
 }
