@@ -4,11 +4,18 @@ import java.security.Principal;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginController {
+	private OAuth2AuthorizedClientService authorizedClientService;
+	
+	public LoginController(OAuth2AuthorizedClientService authorizedClientService) {
+		   this.authorizedClientService = authorizedClientService;
+		}
 	
 	@GetMapping("/user")
 	public String getUserPage() {
@@ -41,4 +48,10 @@ public class LoginController {
 	      }
 	      return usernameInfo;
 	   }
+
+	private StringBuffer getOauth2LoginInfo(Principal user){
+		   StringBuffer protectedInfo = new StringBuffer();
+		   OAuth2AuthenticationToken authToken = ((OAuth2AuthenticationToken) user);
+		}
+
 }
