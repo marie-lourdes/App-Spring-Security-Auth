@@ -5,12 +5,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
 	
 	@GetMapping("/user")
-	public String getUser() {
+	public String getUserPage() {
 		return "Welcome, User";
 	}
 	
 	@GetMapping("/admin")
-	public String getAdmin() {
+	public String getAdminPage() {
 		return "Welcome, Admin";
+	}
+
+	@GetMapping("/")
+	public String getGithubPage() {
+		return "Welcome, GitHub user";
 	}
 }
