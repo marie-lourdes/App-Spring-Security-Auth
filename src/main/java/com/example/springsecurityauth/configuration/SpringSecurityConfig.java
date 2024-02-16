@@ -22,8 +22,8 @@ public class SpringSecurityConfig {
 	
 		http.authorizeHttpRequests(request -> {
 			request.requestMatchers("/admin").hasRole("ADMIN");
-			request.requestMatchers("/h2-console/**").permitAll();
 			request.requestMatchers("/user").hasRole("USER");
+			request.requestMatchers("/h2-console/**").permitAll();
 			request.anyRequest().authenticated();
 
 		}).formLogin(Customizer.withDefaults()).oauth2Login(Customizer.withDefaults()).logout((logout) -> logout.permitAll());
