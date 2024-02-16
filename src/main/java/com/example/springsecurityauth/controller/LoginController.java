@@ -1,7 +1,11 @@
 package com.example.springsecurityauth.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import java.security.Principal;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class LoginController {
 	
 	@GetMapping("/user")
@@ -15,7 +19,7 @@ public class LoginController {
 	}
 
 	@GetMapping("/")
-	public String getGithubPage() {
-		return "Welcome, GitHub user";
+	public String getGithubPage( Principal principal) {
+		return "Welcome, GitHub user"+ principal.getName();
 	}
 }
