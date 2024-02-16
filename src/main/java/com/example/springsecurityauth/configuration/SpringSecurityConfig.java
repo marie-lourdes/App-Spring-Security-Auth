@@ -26,7 +26,7 @@ public class SpringSecurityConfig {
 			request.requestMatchers("/user").hasRole("USER");
 			request.anyRequest().authenticated();
 
-		}).formLogin(Customizer.withDefaults()).logout((logout) -> logout.permitAll());
+		}).formLogin(Customizer.withDefaults()).oauth2Login(Customizer.withDefaults()).logout((logout) -> logout.permitAll());
 				
 		http.csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"));// desactive le header securité cors pour le path vers la bdd H2
 		return http.build();
