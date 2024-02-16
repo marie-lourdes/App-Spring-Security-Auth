@@ -65,8 +65,8 @@ public class LoginController {
 		   Map<String,Object> userAttributes = ((DefaultOAuth2User) authToken.getPrincipal()).getAttributes();
 		   
 		   String userToken = authClient.getAccessToken().getTokenValue();
-		   protectedInfo.append("Welcome, " + userAttributes.get("name")+"<br><br>");
-		   protectedInfo.append("e-mail: " + userAttributes.get("email")+"<br><br>");
+		   protectedInfo.append("Welcome, " + userAttributes.get("login")+"<br><br>");
+		 //  protectedInfo.append("e-mail: " + userAttributes.get("email")+"<br><br>");
 		   protectedInfo.append("Access Token: " + userToken+"<br><br>");
 		   }
 		   else{
