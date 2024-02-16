@@ -67,7 +67,8 @@ public class LoginController {
 		   String userToken = authClient.getAccessToken().getTokenValue();
 		   protectedInfo.append("Welcome, " + userAttributes.get("login")+"<br><br>");
 		 //  protectedInfo.append("e-mail: " + userAttributes.get("email")+"<br><br>");
-		   protectedInfo.append("Access Token: " + userToken+"<br><br>");
+		   
+		 //  protectedInfo.append("Access Token: " + userToken+"<br><br>");
 		   }
 		   else{
 		   protectedInfo.append("NA");
