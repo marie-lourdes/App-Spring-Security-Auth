@@ -31,6 +31,11 @@ public class LoginController {
 	@GetMapping("/")
 	public String getUserInfo(Principal principal) {
 		StringBuffer userInfo = new StringBuffer();
+		if (principal instanceof UsernamePasswordAuthenticationToken) {
+			userInfo.append(getUsernamePasswordLoginInfo(principal));
+		} else if (principal instanceof OAuth2AuthenticationToken) {
+			userInfo.append(getOauth2LoginInfo(principal));
+		}
 		return userInfo.toString();
 
 	}
@@ -49,10 +54,11 @@ public class LoginController {
 	}
 
 	private StringBuffer getOauth2LoginInfo(Principal user) {
-		 StringBuffer protectedInfo = new StringBuffer();
-		   OAuth2AuthenticationToken authToken = ((OAuth2AuthenticationToken) user);
-		OAuth2AuthorizedClient authClient = this.authorizedClientService.loadAuthorizedClient(authToken.getAuthorizedClientRegistrationId(), authToken.getName());
-		   return protectedInfo;
+		StringBuffer protectedInfo = new StringBuffer();
+		OAuth2AuthenticationToken authToken = ((OAuth2AuthenticationToken) user);
+		OAuth2AuthorizedClient authClient = this.authorizedClientService
+				.loadAuthorizedClient(authToken.getAuthorizedClientRegistrationId(), authToken.getName());
+		return protectedInfo;
 	}
 
 }
