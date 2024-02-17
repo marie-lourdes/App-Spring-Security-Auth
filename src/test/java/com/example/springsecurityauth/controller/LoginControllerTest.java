@@ -27,7 +27,7 @@ public class LoginControllerTest {
 
 	 @Test
 	 public void userLoginTest() throws Exception {
-	   mvc.perform(formLogin("/login").user("user").password("user")).andExpect(authenticated());
+	   mvc.perform(formLogin("/login").user("dbuser").password("user")).andExpect(authenticated());
 	 }
 
 	 @Test
